@@ -1,0 +1,66 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "note": "ICON FORMULAS — three-layer tokens (design-system). White clinical editorial; cobalt from brand brief (not generic pink).",
+  "primitive": {
+    "color": {
+      "white": { "$value": "#FFFFFF", "$type": "color" },
+      "gray": {
+        "25": { "$value": "#FCFCFD", "$type": "color" },
+        "50": { "$value": "#F7F8FA", "$type": "color" },
+        "100": { "$value": "#EEF0F4", "$type": "color" },
+        "200": { "$value": "#E2E5EB", "$type": "color" },
+        "300": { "$value": "#C9CED8", "$type": "color" },
+        "500": { "$value": "#6B7280", "$type": "color" },
+        "700": { "$value": "#3A4452", "$type": "color" }
+      },
+      "ink": { "$value": "#0C1220", "$type": "color" },
+      "cobalt": {
+        "50": { "$value": "#E8EEFB", "$type": "color" },
+        "100": { "$value": "#D5E2F8", "$type": "color" },
+        "500": { "$value": "#2457D6", "$type": "color" },
+        "700": { "$value": "#1A3FA8", "$type": "color" }
+      },
+      "violet": {
+        "400": { "$value": "#8B78B8", "$type": "color" },
+        "600": { "$value": "#6F5F98", "$type": "color" }
+      }
+    },
+    "font": {
+      "sans": { "$value": "Inter, system-ui, sans-serif", "$type": "fontFamily" },
+      "serif": { "$value": "Cormorant Garamond, Times New Roman, serif", "$type": "fontFamily" }
+    },
+    "radius": {
+      "none": { "$value": "0", "$type": "dimension" },
+      "sm": { "$value": "2px", "$type": "dimension" },
+      "md": { "$value": "4px", "$type": "dimension" },
+      "full": { "$value": "999px", "$type": "dimension" }
+    }
+  },
+  "semantic": {
+    "color": {
+      "background": { "$value": "{primitive.color.white}", "$type": "color" },
+      "background-soft": { "$value": "{primitive.color.gray.50}", "$type": "color" },
+      "background-band": { "$value": "{primitive.color.cobalt.50}", "$type": "color" },
+      "foreground": { "$value": "{primitive.color.ink}", "$type": "color" },
+      "foreground-muted": { "$value": "{primitive.color.gray.500}", "$type": "color" },
+      "primary": { "$value": "{primitive.color.cobalt.500}", "$type": "color" },
+      "primary-hover": { "$value": "{primitive.color.cobalt.700}", "$type": "color" },
+      "on-primary": { "$value": "{primitive.color.white}", "$type": "color" },
+      "accent": { "$value": "{primitive.color.violet.400}", "$type": "color" },
+      "border": { "$value": "{primitive.color.gray.200}", "$type": "color" }
+    }
+  },
+  "component": {
+    "button": {
+      "bg": { "$value": "{semantic.color.primary}", "$type": "color" },
+      "fg": { "$value": "{semantic.color.on-primary}", "$type": "color" },
+      "hover-bg": { "$value": "{semantic.color.primary-hover}", "$type": "color" },
+      "radius": { "$value": "{primitive.radius.sm}", "$type": "dimension" }
+    },
+    "card": {
+      "bg": { "$value": "{primitive.color.white}", "$type": "color" },
+      "border": { "$value": "{semantic.color.border}", "$type": "color" },
+      "radius": { "$value": "{primitive.radius.none}", "$type": "dimension" }
+    }
+  }
+}
