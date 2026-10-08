@@ -318,25 +318,60 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .link-arrow.dark:hover { border-bottom-color: var(--color-fg); }
 .link-arrow::after { content: "→"; font-weight: 500; }
 
-/* ========== Hero — photo-forward, product baked in ========== */
+/* ========== Hero — full-bleed photo + overlay copy ========== */
 .hero {
+  position: relative;
   border-bottom: 1px solid var(--color-border);
   overflow: hidden;
+  min-height: clamp(560px, 92vh, 860px);
+  display: grid;
+  align-items: stretch;
+  color: var(--color-fg);
+  isolation: isolate;
+}
+
+.hero-scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 68% center;
+  z-index: -2;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    rgb(255 255 255 / 0.94) 0%,
+    rgb(255 255 255 / 0.88) 34%,
+    rgb(255 255 255 / 0.35) 52%,
+    rgb(255 255 255 / 0.05) 70%,
+    transparent 100%
+  );
+  z-index: -1;
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
+  grid-template-columns: minmax(0, 560px) 1fr;
   gap: 0;
-  min-height: clamp(500px, 64vh, 680px);
-  align-items: stretch;
+  min-height: inherit;
+  align-items: center;
+  width: min(var(--max-width), 100% - var(--space-gutter) * 2);
+  margin-inline: auto;
+  padding: var(--space-12) 0;
 }
 
 .hero-copy {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: var(--space-12) clamp(var(--space-2), 2vw, var(--space-6)) var(--space-12) 0;
+  padding: var(--space-6) var(--space-6) var(--space-6) 0;
+  max-width: 34rem;
 }
 
 .hero-copy .display { margin-bottom: var(--space-5); }
@@ -355,7 +390,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-4);
   padding-top: var(--space-6);
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid rgb(12 18 32 / 0.12);
 }
 
 .hero-proof-item {
@@ -385,26 +420,11 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   margin-top: 2px;
 }
 
-/* Full-bleed generated hero with real bottles — no CSS overlay */
-.hero-visual {
-  position: relative;
-  min-height: 420px;
-  background: var(--color-gray-100);
-  overflow: hidden;
-}
-
-.hero-visual > img.hero-scene {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 62% center;
-}
-
 .hero-badge {
   position: absolute;
   right: 0;
-  top: 12%;
-  bottom: 12%;
+  top: 14%;
+  bottom: 14%;
   width: 48px;
   background: var(--color-primary);
   color: var(--color-on-primary);
@@ -417,6 +437,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   justify-content: center;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
+  z-index: 2;
 }
 
 /* ========== Trust strip ========== */
@@ -1439,8 +1460,31 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
     grid-template-columns: 1fr;
   }
 
-  .hero-grid { min-height: 0; }
-  .hero-visual { min-height: 380px; }
+  .hero-grid {
+    min-height: 0;
+  }
+
+  .hero {
+    min-height: 0;
+  }
+
+  .hero-scene {
+    position: relative;
+    height: min(52vw, 420px);
+    object-position: center;
+  }
+
+  .hero::before {
+    background: linear-gradient(180deg, rgb(255 255 255 / 0.2) 0%, rgb(255 255 255 / 0.92) 28%, rgb(255 255 255 / 0.98) 100%);
+  }
+
+  .hero-copy {
+    max-width: none;
+    padding: var(--space-8) 0 var(--space-10);
+  }
+
+  .hero-badge { display: none; }
+
   .section-head .lead { justify-self: start; }
 
   .product-grid,
